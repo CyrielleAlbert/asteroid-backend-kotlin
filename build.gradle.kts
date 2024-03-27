@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.4"
 	kotlin("jvm") version "1.9.23"
 	kotlin("plugin.spring") version "1.9.23"
+	kotlin("plugin.serialization") version "1.9.22"
 }
 
 group = "com.learning.asteroid"
@@ -22,6 +23,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

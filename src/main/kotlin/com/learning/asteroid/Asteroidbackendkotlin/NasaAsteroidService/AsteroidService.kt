@@ -1,4 +1,4 @@
-package NasaAsteroidService
+package com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidService
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
