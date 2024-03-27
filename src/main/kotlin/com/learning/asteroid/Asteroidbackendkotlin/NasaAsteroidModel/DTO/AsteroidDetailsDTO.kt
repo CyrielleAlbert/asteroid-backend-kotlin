@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AsteroidDetailsDTO(
-    val links: Links, //TODO: add to common DTO
+    val links: Links,
     val id: String,
     @SerialName("neo_reference_id") val neoReferenceId: String,
     val name: String,
