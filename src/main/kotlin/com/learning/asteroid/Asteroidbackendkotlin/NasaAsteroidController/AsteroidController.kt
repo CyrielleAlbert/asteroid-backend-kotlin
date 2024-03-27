@@ -1,6 +1,7 @@
 package com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidController
 
 import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.Asteroid
+import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.AsteroidsListDTO
 import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidService.AsteroidService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -17,13 +18,17 @@ class AsteroidController(private val asteroidService: AsteroidService) {
     fun fetchAllAsteroidsForPeriod(
         @RequestParam startDate: String,
         @RequestParam endDate: String
-    ): ResponseEntity<String?>? {
+    ): ResponseEntity<AsteroidsListDTO?>? {
         return try {
-            val asteroids: String? = asteroidService.getAsteroidsListData(startDate, endDate)
-            //TODO: handle null string
-            ResponseEntity<String?>(asteroids, HttpStatus.OK)
+            val asteroids: String = asteroidService.getAsteroidsListData(startDate, endDate) ?: return ResponseEntity(
+                null,
+                HttpStatus.NOT_FOUND
+            )
+            val kotlinxJson = Json {ignoreUnknownKeys = true}
+            val asteroidList = kotlinxJson.decodeFromString<AsteroidsListDTO>(asteroids)
+            ResponseEntity(asteroidList, HttpStatus.OK)
         } catch (e: Exception) {
-            ResponseEntity<String?>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 
@@ -35,7 +40,7 @@ class AsteroidController(private val asteroidService: AsteroidService) {
                     null,
                     HttpStatus.NOT_FOUND
                 )
-            val kotlinxJson = Json { ignoreUnknownKeys = true}
+            val kotlinxJson = Json { ignoreUnknownKeys = true }
             val asteroid = kotlinxJson.decodeFromString<Asteroid>(asteroidInformation)
             ResponseEntity(asteroid, HttpStatus.OK)
 
