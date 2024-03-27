@@ -1,36 +1,22 @@
-package com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel
+package com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.DTO
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.math.BigInteger
 
 @Serializable
-data class AsteroidsListDTO(
-    val links: Links,
-    @SerialName("element_count") val elementCount: Int,
-    @SerialName("near_earth_objects") val nearEarthObjects: Map<String, List<AsteroidDTO>>
-
-)
-
-@Serializable
-data class Links(
-    val next: String? = null,
-    val prev: String? = null,
-    val self: String? = null,
-)
-
-@Serializable
-data class AsteroidDTO(
-    val links: Links,
+data class AsteroidDetailsDTO(
+    val links: Links, //TODO: add to common DTO
     val id: String,
     @SerialName("neo_reference_id") val neoReferenceId: String,
     val name: String,
-    @SerialName("name_jpl_url") val nameJplUrl: String?=null,
-    @SerialName("absolute_magnitude_h") val absoluteMagnitudeH: Float,
+    val designation: String? = null,
+    @SerialName("nasa_jpl_url") val nasaJplUrl: String,
+    @SerialName("absolute_magnitude_h") val absoluteMagnitude: String,
     @SerialName("estimated_diameter") val estimatedDiameter: DiameterDTO,
     @SerialName("is_potentially_hazardous_asteroid") val isPotentiallyHazardous: Boolean,
     @SerialName("close_approach_data") val closeApproachData: List<CloseApproachDTO>,
-    @SerialName("is_sentry_object") val isSentryObject: Boolean
+    @SerialName("orbital_data") val orbitalData: OrbitalDataDTO? = null,
+    @SerialName("is_sentry_object") val isSentryObject: Boolean,
 )
 
 @Serializable

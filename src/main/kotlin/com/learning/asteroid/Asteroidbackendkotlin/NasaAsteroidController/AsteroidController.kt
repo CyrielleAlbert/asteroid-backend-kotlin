@@ -1,7 +1,7 @@
 package com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidController
 
 import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.Asteroid
-import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.AsteroidsListDTO
+import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.DTO.AsteroidsListDTO
 import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidService.AsteroidService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
