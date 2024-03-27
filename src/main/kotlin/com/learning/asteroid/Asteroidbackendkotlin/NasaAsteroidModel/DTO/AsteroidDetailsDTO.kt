@@ -11,7 +11,7 @@ data class AsteroidDetailsDTO(
     val name: String,
     val designation: String? = null,
     @SerialName("nasa_jpl_url") val nasaJplUrl: String,
-    @SerialName("absolute_magnitude_h") val absoluteMagnitude: String,
+    @SerialName("absolute_magnitude_h") val absoluteMagnitude: Float,
     @SerialName("estimated_diameter") val estimatedDiameter: DiameterDTO,
     @SerialName("is_potentially_hazardous_asteroid") val isPotentiallyHazardous: Boolean,
     @SerialName("close_approach_data") val closeApproachData: List<CloseApproachDTO>,

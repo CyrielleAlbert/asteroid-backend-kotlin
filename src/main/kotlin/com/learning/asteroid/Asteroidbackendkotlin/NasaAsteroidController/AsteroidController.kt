@@ -1,6 +1,7 @@
 package com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidController
 
 import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.Asteroid
+import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.DTO.AsteroidDetailsDTO
 import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.DTO.AsteroidsListDTO
 import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidService.AsteroidService
 import org.springframework.http.HttpStatus
@@ -33,7 +34,7 @@ class AsteroidController(private val asteroidService: AsteroidService) {
     }
 
     @GetMapping("/fetchAsteroidInformationById")
-    fun fetchAsteroidInformationById(@RequestParam asteroidId: String): ResponseEntity<Asteroid?> {
+    fun fetchAsteroidInformationById(@RequestParam asteroidId: String): ResponseEntity<AsteroidDetailsDTO?> {
         return try {
             val asteroidInformation: String =
                 asteroidService.getAsteroidDetailsData(asteroidId) ?: return ResponseEntity(
@@ -41,7 +42,7 @@ class AsteroidController(private val asteroidService: AsteroidService) {
                     HttpStatus.NOT_FOUND
                 )
             val kotlinxJson = Json { ignoreUnknownKeys = true }
-            val asteroid = kotlinxJson.decodeFromString<Asteroid>(asteroidInformation)
+            val asteroid = kotlinxJson.decodeFromString<AsteroidDetailsDTO>(asteroidInformation)
             ResponseEntity(asteroid, HttpStatus.OK)
 
         } catch (e: Exception) {
