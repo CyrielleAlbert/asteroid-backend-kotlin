@@ -19,11 +19,17 @@ repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json")
+	implementation("org.apache.httpcomponents:httpclient:4.5.13")
+	implementation("co.elastic.clients:elasticsearch-java:8.13.0")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.17.0")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
