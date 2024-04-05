@@ -1,0 +1,1 @@
+GET http://localhost:8081/es/indexAsteroidById?asteroidId=3542519

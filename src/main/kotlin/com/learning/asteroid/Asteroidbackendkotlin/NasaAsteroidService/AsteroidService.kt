@@ -1,6 +1,10 @@
 package com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidService
 
+import com.learning.asteroid.Asteroidbackendkotlin.NasaAsteroidModel.DTO.AsteroidDetailsDTO
+import kotlinx.serialization.json.Json
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
@@ -29,10 +33,17 @@ class AsteroidService {
         return restTemplate.getForObject(apiUrl, String::class.java)
     }
 
-    fun getAsteroidDetailsData(asteroidID: String?): String? {
+    fun getAsteroidDetailsData(asteroidID: String?): AsteroidDetailsDTO? {
         val apiUrl =
             String.format("%s/%s?api_key=%s", nasaAsteroidDetailsApiUrl, asteroidID, nasaApiKey)
         val restTemplate = RestTemplate()
-        return restTemplate.getForObject(apiUrl, String::class.java)
+        val kotlinxJson = Json { ignoreUnknownKeys = true }
+        return try {
+            restTemplate.getForObject(apiUrl, String::class.java)
+                ?.let { it -> kotlinxJson.decodeFromString<AsteroidDetailsDTO>(it) }
+
+        } catch (e: Exception) {
+            throw java.lang.Exception("error: ${e.message}")
+        }
     }
 }

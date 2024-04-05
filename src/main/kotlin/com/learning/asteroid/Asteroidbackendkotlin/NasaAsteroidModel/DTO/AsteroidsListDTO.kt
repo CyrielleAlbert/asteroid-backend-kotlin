@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AsteroidsListDTO(
-    val links: Links,
+    val linksDTO: LinksDTO,
     @SerialName("element_count") val elementCount: Int,
     @SerialName("near_earth_objects") val nearEarthObjects: Map<String, List<AsteroidDetailsDTO>>
 
